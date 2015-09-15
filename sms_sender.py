@@ -1,9 +1,9 @@
 import requests
-import apikeys #add the nexmo keys in this file
+import apikeys # add the nexmo keys in this file
 import logging
 logging.basicConfig(filename='sms_sender.log',level=logging.DEBUG)
 
-phone_numbers = []
+phone_numbers = [] #add phone numbers here!
 cleaned_phone_numbers = []
 
 for number in phone_numbers:
@@ -16,7 +16,8 @@ for number in phone_numbers:
     cleaned_phone_numbers.append(new_number)
 
 url = "https://rest.nexmo.com/sms/json"
-payload = {"api_key": apikey.NEXMO_KEY, "api_secret": apikey.NEXMO_SECRET, "text": "hello", "from": apikeys.PHONE_NUMBER}
+message = "hello" #add message here
+payload = {"api_key": apikey.NEXMO_KEY, "api_secret": apikey.NEXMO_SECRET, "text": message, "from": apikeys.PHONE_NUMBER}
 for number in cleaned_phone_numbers:
     payload['to'] = number
     r = requests.get(url, params=payload)
